@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: it-reference-system
+    env: node
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && node server.js
+    envVars:
+      - key: DB_HOST
+        value: sql307.infinityfree.com
+      - key: DB_USER
+        value: if0_41678258
+      - key: DB_PASS
+        value: Bader12456
+      - key: DB_NAME
+        value: if0_41678258_it_reference_system
+      - key: DB_PORT
+        value: "3306"

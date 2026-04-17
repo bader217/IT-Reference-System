@@ -1,0 +1,434 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
+
+:root {
+    --main-bg: #f3f7fb;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --accent: #0ea5b7;
+    --danger: #dc2626;
+    --success: #16a34a;
+    --warning: #d97706;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border: #dbe4f0;
+    --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    --radius: 18px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    direction: rtl;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--main-bg);
+    color: var(--text-main);
+    font-family: 'Tajawal', sans-serif;
+}
+
+a {
+    color: inherit;
+}
+
+header {
+    background: linear-gradient(135deg, #0f172a, #1d4ed8 55%, #0ea5b7);
+    color: white;
+    padding: 18px 28px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    text-align: right;
+    flex-shrink: 0;
+    direction: rtl;
+}
+
+.logo-main {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+}
+
+.logo-sub {
+    font-size: 13px;
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+header nav#navMenu {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    direction: rtl;
+    justify-content: flex-start;
+    flex: 0 1 auto;
+}
+
+header nav#navMenu a,
+header nav#navMenu .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 999px;
+    transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    white-space: nowrap;
+    line-height: 1.2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header nav#navMenu a:hover,
+header nav#navMenu .nav-link:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.container {
+    max-width: 1180px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(219, 228, 240, 0.8);
+    backdrop-filter: blur(8px);
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 14px;
+}
+
+.section-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 15px;
+    margin-top: 14px;
+}
+
+.section-box {
+    background: linear-gradient(135deg, #2563eb, #0ea5b7);
+    color: white;
+    padding: 20px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22);
+    display: block;
+    text-align: center;
+    min-height: 76px;
+    display: grid;
+    place-items: center;
+}
+
+.section-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(37, 99, 235, 0.28);
+    filter: saturate(1.05);
+    color: white;
+}
+
+.problem-title {
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+
+.problem-text {
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.solution-text {
+    background: #f0fdf4;
+    color: #166534;
+    padding: 12px 15px;
+    border-radius: 12px;
+    border-right: 4px solid var(--success);
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+input[type="text"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.btn-warning {
+    background: var(--warning);
+    color: white;
+}
+
+.btn-warning:hover {
+    background: #b45309;
+}
+
+.btn-outline-primary {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary);
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+table th,
+table td {
+    padding: 12px 14px;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+table th {
+    background: #eff6ff;
+    color: #1d4ed8;
+    font-weight: 800;
+}
+
+table tr:hover td {
+    background: #fafcff;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.badge-new {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.badge-progress {
+    background: #fed7aa;
+    color: #9a3412;
+}
+
+.badge-resolved {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.auth-wrapper {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.auth-card {
+    background: rgba(255, 255, 255, 0.96);
+    padding: 32px 28px;
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    max-width: 430px;
+    width: 100%;
+    border: 1px solid rgba(219, 228, 240, 0.8);
+}
+
+.auth-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.auth-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.auth-error {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 13px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.auth-btn {
+    width: 100%;
+    margin-top: 12px;
+}
+
+hr {
+    margin: 18px 0;
+    border: 0;
+    border-top: 1px solid var(--border);
+}
+
+.d-none {
+    display: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+
+@media (max-width: 768px) {
+    header {
+        padding: 16px 18px;
+        justify-content: flex-start;
+    }
+
+    header nav#navMenu {
+        width: 100%;
+    }
+
+    .logo {
+        width: 100%;
+    }
+
+    .container {
+        padding: 0 14px;
+        margin-top: 22px;
+    }
+
+    .card,
+    .auth-card {
+        padding: 18px;
+        border-radius: 18px;
+    }
+
+    .section-grid {
+        grid-template-columns: 1fr;
+    }
+
+    table th,
+    table td {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+}

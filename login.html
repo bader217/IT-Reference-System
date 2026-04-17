@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل دخول - IT Reference System</title>
+    <link rel="stylesheet" href="frontend/assets/css/style.css">
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <h1 class="auth-title">تسجيل الدخول</h1>
+            <p class="auth-subtitle">مرحباً بعودتك إلى نظام IT المرجعي</p>
+
+            <div id="loginError" class="auth-error d-none"></div>
+
+            <form id="loginForm">
+                <label>اسم المستخدم</label>
+                <input type="text" id="username" required autofocus>
+
+                <label>كلمة المرور</label>
+                <input type="password" id="password" required>
+
+                <button type="submit" class="btn btn-primary auth-btn">دخول</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="frontend/assets/css/js/config.js"></script>
+    <script src="frontend/assets/css/js/api.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+
+            try {
+                const res = await API.auth.login(username, password);
+
+                if (res.success) {
+                    localStorage.setItem('currentUser', JSON.stringify(res.user));
+                    window.location.href = 'main.html';
+                } else {
+                    errorDiv.classList.remove('d-none');
+                    errorDiv.textContent = res.message || 'بيانات الدخول غير صحيحة';
+                }
+            } catch (err) {
+                errorDiv.classList.remove('d-none');
+                errorDiv.textContent = 'خطأ في الاتصال بالسيرفر';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرئيسية - IT Reference System</title>
+    <link rel="stylesheet" href="frontend/assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-main">IT Reference System</div>
+            <div class="logo-sub">قاعدة مرجعية لحلول مشاكل قسم تقنية المعلومات</div>
+        </div>
+        <nav id="navMenu"></nav>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2 class="card-title">IT Reference System</h2>
+            <p style="color: #64748b;">اختر القسم للوصول للحلول بسرعة.</p>
+        </div>
+
+        <div id="sectionsView">
+            <div class="card">
+                <h2 class="card-title">الأقسام</h2>
+                <div class="section-grid" id="sectionsGrid"></div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">إرسال بلاغ</h2>
+                <form id="reportForm">
+                    <label>القسم</label>
+                    <select id="reportSection" required>
+                        <option value="">اختر القسم</option>
+                    </select>
+
+                    <label>عنوان البلاغ</label>
+                    <input type="text" id="reportTitle" required>
+
+                    <label>وصف المشكلة</label>
+                    <textarea id="reportDesc" required></textarea>
+
+                    <button type="submit" class="btn btn-primary">إرسال</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="problemsView" style="display: none;">
+            <div class="card">
+                <h2 class="card-title" id="sectionTitle"></h2>
+            </div>
+            <div id="problemsList"></div>
+            <button class="btn btn-outline-primary" id="backBtn">العودة للأقسام</button>
+        </div>
+    </div>
+
+    <footer>IT Reference System © 2026</footer>
+
+    <script src="frontend/assets/css/js/config.js"></script>
+    <script src="frontend/assets/css/js/api.js"></script>
+    <script src="frontend/assets/css/js/auth.js"></script>
+    <script src="frontend/assets/css/js/main.js"></script>
+</body>
+</html>

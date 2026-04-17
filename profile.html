@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حسابي - IT Reference System</title>
+    <link rel="stylesheet" href="frontend/assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-main">IT Reference System</div>
+            <div class="logo-sub">إدارة بيانات الحساب</div>
+        </div>
+        <nav id="navMenu"></nav>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2 class="card-title">حسابي</h2>
+            <div id="profileInfo"></div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title">تحديث رقم الجوال</h2>
+            <form id="phoneForm">
+                <label>رقم الجوال</label>
+                <input type="text" id="phone" placeholder="05xxxxxxxx" required>
+                <button type="submit" class="btn btn-primary">حفظ التعديل</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title">تغيير كلمة المرور</h2>
+            <form id="passwordForm">
+                <label>كلمة المرور الجديدة</label>
+                <input type="password" id="newPassword" required>
+
+                <label>تأكيد كلمة المرور</label>
+                <input type="password" id="confirmPassword" required>
+
+                <button type="submit" class="btn btn-primary">تغيير كلمة المرور</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>IT Reference System © 2026</footer>
+
+    <script src="frontend/assets/css/js/config.js"></script>
+    <script src="frontend/assets/css/js/api.js"></script>
+    <script src="frontend/assets/css/js/auth.js"></script>
+    <script src="frontend/assets/css/js/app.js"></script>
+</body>
+</html>
