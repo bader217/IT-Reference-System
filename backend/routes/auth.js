@@ -1,52 +1,33 @@
 const express = require('express');
 const router = express.Router();
-
 const bcrypt = require('bcrypt');
 const db = require('../db');
-
-function normalizeRole(role) {
-    if (role === 'admin') return 'manager';
-    return role;
-}
 
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
-    if (!username || !password) {
-        return res.status(400).json({
-            success: false,
-            message: 'اسم المستخدم وكلمة المرور مطلوبان'
-        });
-    }
-
     try {
         const result = await db.query(
-            'SELECT id, username, phone, role, password FROM users WHERE username = $1 LIMIT 1',
-            [username.trim()]
+            'SELECT * FROM users WHERE username = $1 LIMIT 1',
+            [username]
         );
 
-        const rows = result.rows;
-
-        if (rows.length === 0) {
-            return res.json({ success: false, message: 'بيانات الدخول غير صحيحة' });
+        if (result.rows.length === 0) {
+            return res.json({ success: false, message: 'بيانات خاطئة' });
         }
 
-        const user = rows[0];
+        const user = result.rows[0];
+        const match = await bcrypt.compare(password, user.password);
 
-        const passwordMatches = await bcrypt.compare(password, user.password).catch(() => false);
-        const legacyPlainMatches = user.password === password;
-
-        if (!passwordMatches && !legacyPlainMatches) {
-            return res.json({ success: false, message: 'بيانات الدخول غير صحيحة' });
+        if (!match) {
+            return res.json({ success: false, message: 'بيانات خاطئة' });
         }
 
-        user.role = normalizeRole(user.role);
         delete user.password;
-
         res.json({ success: true, user });
 
-    } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
     }
 });
 

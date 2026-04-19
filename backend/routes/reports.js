@@ -3,87 +3,56 @@ const router = express.Router();
 const db = require('../db');
 const { requireAuth, requireContentManager } = require('../middleware_auth');
 
-function normalizeReportRow(row) {
-    return {
-        ...row,
-        status_text: row.status === 'resolved' ? 'تم الحل' : row.status === 'in_progress' ? 'قيد التنفيذ' : 'جديد'
-    };
-}
-
 router.get('/', requireAuth, requireContentManager, async (req, res) => {
-    try {
-        const [rows] = await db.query(`
-            SELECT r.*, u.username, s.name AS section_name 
-            FROM reports r 
-            JOIN users u ON r.user_id = u.id 
-            JOIN sections s ON r.section_id = s.id 
-            ORDER BY r.id DESC
-        `);
-        res.json(rows.map(normalizeReportRow));
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+    const result = await db.query(`
+        SELECT r.*, u.username, s.name as section_name
+        FROM reports r
+        JOIN users u ON r.user_id = u.id
+        JOIN sections s ON r.section_id = s.id
+        ORDER BY r.id DESC
+    `);
+
+    res.json(result.rows);
 });
 
 router.get('/mine', requireAuth, async (req, res) => {
-    try {
-        const [rows] = await db.query(`
-            SELECT r.id, r.title, r.description, r.status, r.created_at, r.updated_at,
-                   s.name AS section_name
-            FROM reports r
-            JOIN sections s ON r.section_id = s.id
-            WHERE r.user_id = ?
-            ORDER BY r.id DESC
-        `, [req.user.id]);
+    const result = await db.query(
+        `SELECT r.*, s.name as section_name
+         FROM reports r
+         JOIN sections s ON r.section_id = s.id
+         WHERE r.user_id = $1`,
+        [req.user.id]
+    );
 
-        res.json(rows.map(normalizeReportRow));
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+    res.json(result.rows);
 });
 
 router.post('/', requireAuth, async (req, res) => {
     const { section_id, title, description } = req.body;
 
-    if (!section_id || !title || !description) {
-        return res.status(400).json({ success: false, message: 'جميع الحقول مطلوبة' });
-    }
+    const result = await db.query(
+        `INSERT INTO reports (user_id, section_id, title, description, status)
+         VALUES ($1,$2,$3,$4,'new') RETURNING id`,
+        [req.user.id, section_id, title, description]
+    );
 
-    try {
-        const [result] = await db.query(
-            'INSERT INTO reports (user_id, section_id, title, description, status) VALUES (?, ?, ?, ?, "new")',
-            [req.user.id, section_id, title.trim(), description.trim()]
-        );
-        res.json({ success: true, id: result.insertId });
-    } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
-    }
+    res.json({ success: true, id: result.rows[0].id });
 });
 
 router.put('/:id/status', requireAuth, requireContentManager, async (req, res) => {
-    const { id } = req.params;
     const { status } = req.body;
-    const allowed = new Set(['new', 'in_progress', 'resolved']);
 
-    if (!allowed.has(status)) {
-        return res.status(400).json({ success: false, message: 'حالة غير صحيحة' });
-    }
+    await db.query(
+        'UPDATE reports SET status=$1 WHERE id=$2',
+        [status, req.params.id]
+    );
 
-    try {
-        await db.query('UPDATE reports SET status = ? WHERE id = ?', [status, id]);
-        res.json({ success: true });
-    } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
-    }
+    res.json({ success: true });
 });
 
 router.delete('/:id', requireAuth, requireContentManager, async (req, res) => {
-    try {
-        await db.query('DELETE FROM reports WHERE id = ?', [req.params.id]);
-        res.json({ success: true });
-    } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
-    }
+    await db.query('DELETE FROM reports WHERE id=$1', [req.params.id]);
+    res.json({ success: true });
 });
 
 module.exports = router;
