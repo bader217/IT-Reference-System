@@ -1,25 +1,13 @@
-const mysql = require('mysql2/promise');
+const { Pool } = require('pg');
 
-const connection = mysql.createPool({
-  uri: process.env.MYSQL_URL,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
-async function testConnection() {
-  try {
-    const conn = await connection.getConnection();
-    console.log('MySQL Connected');
-    conn.release();
-  } catch (err) {
-    console.error('DB Error:', err);
-  }
-}
-
-testConnection();
-
-module.exports = connection;
+module.exports = pool;
 
 function getStatusText(status){
   return status === 'resolved' ? 'تم الحل' : 'قيد المعالجة';
