@@ -4,9 +4,14 @@ An internal IT system designed to help manage common technical issues, provide s
 
 Project Link
 
-https://it-reference-system-1dlt.onrender.com
+https://it-reference-system-1dlt.onrender.com  
+
+Username: admin
+Password: 123456
+
 
 Overview
+
 Browse technical issues by category
 View step-by-step solutions
 Submit reports for unresolved problems
@@ -32,8 +37,4 @@ bcrypt
 Render
 
 
-Notes
 
-Duplicate usernames and phone numbers are not allowed
-Phone number must be exactly 10 digits
-Access is controlled based on user roles
