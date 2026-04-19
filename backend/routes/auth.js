@@ -1,8 +1,22 @@
+const express = require('express');
+const router = express.Router();
+
+const bcrypt = require('bcrypt');
+const db = require('../db');
+
+function normalizeRole(role) {
+    if (role === 'admin') return 'manager';
+    return role;
+}
+
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
-        return res.status(400).json({ success: false, message: 'اسم المستخدم وكلمة المرور مطلوبان' });
+        return res.status(400).json({
+            success: false,
+            message: 'اسم المستخدم وكلمة المرور مطلوبان'
+        });
     }
 
     try {
@@ -35,3 +49,5 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 });
+
+module.exports = router;
