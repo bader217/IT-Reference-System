@@ -11,16 +11,15 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '..')));
 
-// API routes
+
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/sections', require('./routes/sections'));
 app.use('/api/problems', require('./routes/problems'));
 app.use('/api/reports', require('./routes/reports'));
 
-
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'login.html'));
+    res.sendFile(path.join(__dirname, '..', 'landing.html'));
 });
 
 app.listen(PORT, () => {
