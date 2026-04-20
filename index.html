@@ -6,55 +6,111 @@
     <title>IT Reference System</title>
 
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: Arial;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(to bottom, #0f172a, #020617);
             color: white;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .hero {
-            max-width: 600px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content {
+            max-width: 520px;
+            animation: fadeIn 0.8s ease;
         }
 
         h1 {
             font-size: 42px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
         }
 
         p {
-            color: #cbd5f5;
-            margin-bottom: 30px;
-            font-size: 18px;
+            color: #94a3b8;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-size: 16px;
         }
 
         .btn {
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 12px 28px;
             background: #3b82f6;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
+            font-size: 16px;
             cursor: pointer;
-            color: white;
+            transition: 0.25s;
+            box-shadow: 0 5px 15px rgba(59,130,246,0.3);
         }
 
         .btn:hover {
             background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .mini {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #64748b;
+            letter-spacing: 0.5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 13px;
+            color: #475569;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="hero">
-    <h1>IT Reference System</h1>
-    <p>نظام إدارة مشاكل تقنية المعلومات وحلولها بشكل منظم وسهل</p>
-    <button class="btn" onclick="goLogin()">تسجيل الدخول</button>
+    <div class="content">
+        <h1>IT Reference System</h1>
+        <p>
+            منصة تساعدك على إدارة مشاكل تقنية المعلومات والوصول للحلول بسرعة وبطريقة منظمة.
+        </p>
+
+        <button class="btn" onclick="goLogin()">تسجيل الدخول</button>
+
+        <div class="mini">
+            حلول جاهزة • إدارة بلاغات • تنظيم الأقسام
+        </div>
+    </div>
 </div>
+
+<footer>
+    IT Reference System © 2026
+</footer>
 
 <script>
 function goLogin() {
