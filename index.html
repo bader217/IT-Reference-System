@@ -14,97 +14,182 @@
         }
 
         body {
-            height: 100vh;
-            background: linear-gradient(to bottom, #0f172a, #020617);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            background: #f8fafc;
+            color: #0f172a;
         }
 
-        .hero {
-            flex: 1;
+        .container {
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
             padding: 20px;
         }
 
-        .content {
-            max-width: 520px;
-            animation: fadeIn 0.8s ease;
+        .box {
+            width: 100%;
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .left {
+            text-align: right;
         }
 
         h1 {
             font-size: 42px;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: #2563eb; /* نفس لون الزر */
         }
 
         p {
-            color: #94a3b8;
-            margin-bottom: 25px;
+            color: #64748b;
             line-height: 1.7;
-            font-size: 16px;
+            margin-bottom: 25px;
+            font-size: 17px;
         }
 
         .btn {
-            padding: 12px 28px;
-            background: #3b82f6;
+            padding: 14px 28px;
+            background: #2563eb;
+            color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 10px;
+            font-size: 17px;
             cursor: pointer;
-            transition: 0.25s;
-            box-shadow: 0 5px 15px rgba(59,130,246,0.3);
+            transition: 0.2s;
         }
 
         .btn:hover {
-            background: #2563eb;
+            background: #1d4ed8;
             transform: translateY(-2px);
         }
 
-        .mini {
-            margin-top: 25px;
+        .stats {
+            display: flex;
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat h3 {
+            font-size: 22px;
+            color: #2563eb;
+        }
+
+        .stat span {
             font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+            text-align: right;
+        }
+
+        .card h4 {
+            margin-bottom: 8px;
+            color: #0f172a;
+        }
+
+        .card p {
+            font-size: 14px;
             color: #64748b;
-            letter-spacing: 0.5px;
         }
 
         footer {
             text-align: center;
-            padding: 15px;
-            font-size: 13px;
-            color: #475569;
+            padding: 20px;
+            color: #94a3b8;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
+        @media (max-width: 900px) {
+            .box {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+            .left {
+                text-align: center;
+            }
+
+            .stats {
+                justify-content: center;
             }
         }
     </style>
 </head>
+
 <body>
 
-<div class="hero">
-    <div class="content">
-        <h1>IT Reference System</h1>
-        <p>
-            منصة تساعدك على إدارة مشاكل تقنية المعلومات والوصول للحلول بسرعة وبطريقة منظمة.
-        </p>
+<div class="container">
+    <div class="box">
 
-        <button class="btn" onclick="goLogin()">تسجيل الدخول</button>
+        <div class="left">
+            <h1>IT Reference System</h1>
 
-        <div class="mini">
-            حلول جاهزة • إدارة بلاغات • تنظيم الأقسام
+            <p>
+                نظام يساعدك على إدارة مشاكل تقنية المعلومات،
+                الوصول للحلول بسرعة، وتنظيم العمل بشكل واضح وسهل.
+            </p>
+
+            <button class="btn" onclick="goLogin()">تسجيل الدخول</button>
+
+            <div class="stats">
+                <div class="stat">
+                    <h3>50+</h3>
+                    <span>حل تقني</span>
+                </div>
+
+                <div class="stat">
+                    <h3>50+</h3>
+                    <span>بلاغ</span>
+                </div>
+
+                <div class="stat">
+                    <h3>6</h3>
+                    <span>أقسام</span>
+                </div>
+            </div>
         </div>
+
+        <div class="right">
+
+            <div class="card">
+                <h4>مشكلة شائعة</h4>
+                <p>عدم تسجيل الدخول في الجهاز داخل الدومين (Domain Login Failed)</p>
+            </div>
+
+            <div class="card">
+                <h4>الحل</h4>
+                <p>
+                    تأكد من اتصال الجهاز بالشبكة الداخلية ثم تحقق من إعدادات DNS،
+                    بعدها أعد تشغيل الجهاز وجرب تسجيل الدخول باستخدام حساب الأدمن
+                    وإذا استمرت المشكلة أعد ربط الجهاز بالدومين من جديد.
+                </p>
+            </div>
+
+        </div>
+
     </div>
 </div>
 
