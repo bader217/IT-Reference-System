@@ -40,8 +40,6 @@ Tech Stack
 Node.js + Express
 PostgreSQL
 JavaScript / HTML / CSS
-bcrypt
-Render
 
 
 
